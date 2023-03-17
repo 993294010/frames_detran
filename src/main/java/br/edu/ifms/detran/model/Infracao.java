@@ -1,3 +1,4 @@
+
 package br.edu.ifms.detran.model;
 
 import java.io.Serializable;
@@ -22,8 +23,7 @@ public class Infracao implements Serializable{
 	private String descricao;
 	private int pontos;
 	private float valor;
-	@OneToMany
-	
+	@OneToMany(mappedBy = "infracao")	
 	private List<Multa> multas = new ArrayList<Multa>();
 
 	

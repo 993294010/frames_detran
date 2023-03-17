@@ -22,8 +22,7 @@ public class Multa implements Serializable{
 	@JoinColumn(name="id_carro")
 	private Carro carro;
 	@ManyToOne
-	@JoinColumn(name="id_infracao")
-	
+	@JoinColumn(name="id_infracao")	
 	private Infracao infracao;
 	
 	public Multa() {

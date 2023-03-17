@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 @Entity
 
 public class Carro implements Serializable {
@@ -24,6 +26,10 @@ public class Carro implements Serializable {
 	private String placa;
 	private String marca;
 	private int modelo;
+	private String cor;
+	@OneToOne(cascade= CascadeType.ALL, mappedBy = "carro")
+	private Apolice apolice;
+	
 	@OneToMany(mappedBy = "carro")
 	private List<Multa> multas = new ArrayList<Multa>();
 	
@@ -33,14 +39,20 @@ public class Carro implements Serializable {
 		
 	}
 
-	public Carro(Long id, String nome, String placa, String marca, int modelo) {
+	
+
+	public Carro(Long id, String nome, String placa, String marca, int modelo, String cor, Apolice apolice) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.placa = placa;
 		this.marca = marca;
 		this.modelo = modelo;
+		this.cor = cor;
+		this.apolice = apolice;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -90,6 +102,31 @@ public class Carro implements Serializable {
 	public void setMultas(List<Multa> multas) {
 		this.multas = multas;
 	}
+
+	
+	public String getCor() {
+		return cor;
+	}
+
+
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+
+
+	public Apolice getApolice() {
+		return apolice;
+	}
+
+
+
+	public void setApolice(Apolice apolice) {
+		this.apolice = apolice;
+	}
+
+
 
 	@Override
 	public int hashCode() {
